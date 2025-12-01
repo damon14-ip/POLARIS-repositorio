@@ -1,0 +1,149 @@
+/* =========================================================
+   1. Fondo de Pantalla y Base (Sin Cambios)
+========================================================= */
+.fondo-inicio {
+    background-image: url('../../../assets/imagenes/foto-inicio-proyecto.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-height: 100vh; 
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.fondo-inicio::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6); 
+    backdrop-filter: blur(4px); 
+    z-index: 1;
+}
+
+.fondo-inicio > .row {
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================================================
+   2. Botón Café (Sin Cambios)
+========================================================= */
+.btn-marron-cafe {
+    background-color: #6D4C41; 
+    border: 2px solid #5D4037; 
+    color: #fff;
+    font-weight: 700; 
+    padding: 12px 22px; 
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+}
+
+.btn-marron-cafe:hover {
+    background-color: #5D4037;
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+}
+
+/* =========================================================
+   3. ☕ Título de Combos (Arreglado - NO es un botón)
+========================================================= */
+.titulo-combos {
+    /* Diseño de barra elegante de Glassmorphism */
+    background: rgba(255, 255, 255, 0.25); 
+    backdrop-filter: blur(10px); 
+    color: #fff;
+    
+    padding: 10px 15px; 
+    border-radius: 10px; 
+    margin-bottom: 0; /* Ya no es un botón, es un título */
+    
+    border: 1px solid rgba(255,255,255,0.4); 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    
+    font-size: 1.3rem; /* Más grande y como título */
+    font-weight: 700;
+    letter-spacing: 2px; /* Espaciado para el título */
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   4. Tarjeta de Combo Moderna (Sin Cambios)
+========================================================= */
+.card-combo {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(6px);
+    border-radius: 20px; 
+    padding: 25px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-combo:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+/* =========================================================
+   5. 💲 Etiqueta de Precio (FINAL - Muy Compacta)
+========================================================= */
+.price-tag {
+    /* Usamos el color café de la marca */
+    background-color: #6D4C41; 
+    color: #fff; 
+    
+    font-weight: 700;
+    /* Reducimos el tamaño de la fuente BASE */
+    font-size: 0.7em; 
+    text-transform: uppercase;
+    
+    /* PADDING MÍNIMO para hacerlo pequeño */
+    padding: 2px 7px; 
+    border-radius: 4px; 
+    
+    position: absolute;
+    top: 10px; /* Cerca de la esquina */
+    left: 10px;
+
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3); 
+    border: 1px solid #5D4037; 
+    
+    display: flex;
+    align-items: center;
+    line-height: 1; 
+}
+
+/* Estilo para el número del precio (ej. 5, 7, 11) - ¡La clave para que sea compacto! */
+.price-tag .price-number {
+    /* Hacemos el número GRANDE */
+    font-size: 1.6em; 
+    margin-left: 2px;
+    line-height: 1; 
+    /* Eliminar el letter-spacing en el número */
+    letter-spacing: 0; 
+}
+
+/* Ajustes del texto (Sin Cambios) */
+.combo-content h3 {
+    font-size: 20px;
+    margin-bottom: 4px;
+    line-height: 1.2;
+}
+
+.combo-content p {
+    font-size: 10px;
+    opacity: 0.85;
+    line-height: 1.4;
+}
+.logo{
+    width: 40%;
+    height: 40%;
+}
+.combo{
+    color:aqua;
+}

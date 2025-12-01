@@ -1,0 +1,292 @@
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            padding: 20px 0;
+        }
+
+        .menu-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Sección de Waffles */
+        .waffle-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .waffle-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .waffle-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .waffle-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .waffle-info {
+            background: linear-gradient(135deg, #f4a460, #e89456);
+            padding: 15px 20px;
+            position: relative;
+        }
+
+        .waffle-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .waffle-name {
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .waffle-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .waffle-description {
+            font-size: 11px;
+            color: #fff;
+            margin-bottom: 10px;
+            opacity: 0.95;
+        }
+
+        .cart-btn {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            background-color: #fff;
+            color: #e89456;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cart-btn:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* Sección de Salsas y Topping */
+        .toppings-section {
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .toppings-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #351503;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .toppings-categories {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .topping-btn {
+            background-color: #fff;
+            color: #8b4513;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .topping-btn:hover {
+            background-color: #8b4513;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .toppings-display {
+            background-color: #ffa726;
+            padding: 40px 20px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .toppings-display::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: #fff;
+            border-radius: 0 0 50% 50%;
+        }
+
+        .toppings-display::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: #fff;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .toppings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .topping-item {
+            text-align: center;
+        }
+
+        .topping-icon {
+            font-size: 60px;
+            margin-bottom: 5px;
+        }
+
+        /* Segunda sección de Waffles */
+        .waffle-grid-bottom {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Responsive para tablet */
+        @media (max-width: 768px) {
+            .waffle-grid,
+            .waffle-grid-bottom {
+                grid-template-columns: 1fr;
+            }
+
+            .waffle-image {
+                height: 250px;
+            }
+
+            .toppings-title {
+                font-size: 26px;
+            }
+
+            .toppings-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Responsive para móvil */
+        @media (max-width: 576px) {
+            .waffle-grid,
+            .waffle-grid-bottom {
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .waffle-image {
+                height: 200px;
+            }
+
+            .waffle-name {
+                font-size: 12px;
+            }
+
+            .waffle-price {
+                font-size: 14px;
+            }
+
+            .waffle-description {
+                font-size: 10px;
+            }
+
+            .toppings-title {
+                font-size: 22px;
+            }
+
+            .topping-btn {
+                padding: 8px 20px;
+                font-size: 12px;
+            }
+
+            .toppings-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+
+            .topping-icon {
+                font-size: 45px;
+            }
+        }
+
+        /* Responsive para laptop */
+        @media (min-width: 992px) {
+            .waffle-image {
+                height: 320px;
+            }
+
+            .waffle-name {
+                font-size: 16px;
+            }
+
+            .waffle-price {
+                font-size: 18px;
+            }
+
+            .waffle-description {
+                font-size: 13px;
+            }
+
+            .toppings-title {
+                font-size: 40px;
+            }
+
+            .topping-btn {
+                padding: 12px 30px;
+                font-size: 16px;
+            }
+
+            .toppings-grid {
+                grid-template-columns: repeat(8, 1fr);
+            }
+
+            .topping-icon {
+                font-size: 70px;
+            }
+        }
