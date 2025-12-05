@@ -1,0 +1,284 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            font-family: 'Montserrat', sans-serif;
+            padding: 20px 0;
+        }
+
+
+        .menu-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #000;
+        }
+
+        .frappe-item {
+            position: relative;
+            height: 350px;
+            padding: 40px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .frappe-1 {
+            background: linear-gradient(to bottom right, #c85a31, #b84a25);
+        }
+
+        .frappe-2 {
+            background: linear-gradient(to bottom right, #ff85b3, #ff6b9d);
+        }
+
+        .frappe-3 {
+            background: linear-gradient(to bottom right, #9E6999, #9E6999);
+        }
+        .frappe-4 {
+            background: linear-gradient(to bottom right, #E5D2AB, #E5D2AB);
+        }
+        .frappe-5 {
+            background: linear-gradient(to bottom right, #D38C3A, #D38C3A);
+        }
+        .frappe-6{
+            background: linear-gradient(to bottom right, #77512e, #77512e);
+        }
+        .frappe-7{
+            background: linear-gradient(to bottom right, #F3B900, #F3B900);
+        }
+        .frappe-8 {
+            background: linear-gradient(to bottom right, #FFB5A7, #FFB5A7);
+        }
+        .frappe-9 {
+            background: linear-gradient(to bottom right, #2c210c, #2c210c);
+        }
+        .frappe-10{
+            background: linear-gradient(to bottom right, #e4ee53, #e4ee53);
+        }
+        .frappe-11 {
+            background: linear-gradient(to bottom right, #9d7fce, #9d7fce);
+        }
+        .frappe-12 {
+            background: linear-gradient(to bottom right, #95c569, #95c569);
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 50%;
+        }
+
+        .frappe-title {
+            font-size: 48px;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: white;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .frappe-description {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: white;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-weight: normal;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cart-icon {
+            background-color: #3b9fd9;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cart-icon:hover {
+            background-color: #2d7fb5;
+            transform: scale(1.05);
+        }
+
+        .frappe-price {
+            background-color: white;
+            color: #333;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-size: 32px;
+            font-weight: 900;
+        }
+
+        .frappe-image {
+            position: absolute;
+            right: 50px;
+            bottom: 0;
+            height: 340px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+        }
+
+        .frappe-1 .frappe-image {
+            height: 380px;
+        }
+
+        .frappe-2 .frappe-image {
+            height: 360px;
+        }
+
+        .frappe-3 .frappe-image {
+            height: 350px;
+        }
+
+        /* Responsive para tablet */
+        @media (max-width: 768px) {
+            .frappe-item {
+                height: 300px;
+                padding: 30px;
+            }
+
+            .frappe-title {
+                font-size: 36px;
+            }
+
+            .frappe-description {
+                font-size: 14px;
+            }
+
+            .frappe-price {
+                font-size: 26px;
+                padding: 8px 24px;
+            }
+
+            .cart-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .frappe-image {
+                height: 280px;
+                right: 30px;
+            }
+
+            .frappe-1 .frappe-image {
+                height: 300px;
+            }
+
+            .frappe-2 .frappe-image {
+                height: 290px;
+            }
+
+            .frappe-3 .frappe-image {
+                height: 280px;
+            }
+        }
+
+        /* Responsive para móvil */
+        @media (max-width: 576px) {
+            .frappe-item {
+                height: 280px;
+                padding: 25px;
+            }
+
+            .content-wrapper {
+                max-width: 55%;
+            }
+
+            .frappe-title {
+                font-size: 26px;
+                letter-spacing: 1px;
+                margin-bottom: 12px;
+            }
+
+            .frappe-description {
+                font-size: 11px;
+                line-height: 1.4;
+                margin-bottom: 15px;
+            }
+
+            .price-container {
+                gap: 10px;
+            }
+
+            .cart-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+                border-radius: 6px;
+            }
+
+            .frappe-price {
+                font-size: 20px;
+                padding: 6px 18px;
+                border-radius: 20px;
+            }
+
+            .frappe-image {
+                right: -10px;
+                height: 240px;
+            }
+
+            .frappe-1 .frappe-image {
+                height: 260px;
+                right: -5px;
+            }
+
+            .frappe-2 .frappe-image {
+                height: 250px;
+                right: 0;
+            }
+
+            .frappe-3 .frappe-image {
+                height: 235px;
+                right: 5px;
+            }
+        }
+.price-cart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.cart-button {
+    background-color: #212529;    /* negro elegante */
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.cart-button:hover {
+    background-color: #3a3a3a;
+    transform: scale(1.12);
+}
+
+.frappe-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1d1c1c;
+}
