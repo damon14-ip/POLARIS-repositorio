@@ -8,11 +8,11 @@ import { Jugos } from './component/jugos/jugos';
 import { Ensalada } from './component/ensalada/ensalada';
 
 export const routes: Routes = [
-    {path:'',component:Inicio},
-    { path: 'coffes', component: Coffes},
-    { path: 'frappe', component: Frappe},
-    { path: 'wafles', component: Wafles},
-    { path: 'sandwich', component: Sandwich},
-    { path: 'jugos', component: Jugos},
-    { path: 'ensalada', component: Ensalada}
+  { path: '', component: Inicio },
+  { path: 'coffes', component: Coffes },
+  { path: 'frappe', component: Frappe },
+  { path: 'wafles', component: Wafles },
+  { path: 'sandwich', component: Sandwich },
+  { path: 'jugos', component: Jugos },
+  { path: 'ensalada', component: Ensalada }
 ];

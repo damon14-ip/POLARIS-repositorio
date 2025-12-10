@@ -1,102 +1,41 @@
 <div class="coffee-background">
-    <div class="container my-5">
-        <div class="row justify-content-center gy-5"> <!-- gy-5 = separación vertical -->
+  <div class="container my-5">
+    <div class="row justify-content-center gy-5">
 
-            <div class="col-12 col-md-5 px-3"> 
-                <div class="card-coffee p-3 text-white text-center position-relative h-100">
-                    <img src="cafe-bombon.png" class="coffee-img position-absolute top-0 start-50 translate-middle" alt="Café Bombón">
-                    <span class="price-tag fs-5 fw-bold p-1 position-absolute">S/.5</span>
-                    <div class="coffee-details mt-5 pt-3">
-                        <h3 class="fw-bolder text-uppercase mb-1">CAFÉ BOMBÓN</h3>
-                        <p class="mb-1">Café espresso</p>
-                        <p class="mb-1">+ leche condensada</p>
-                        <p class="mb-3">+ Topping</p>
-                    </div>
-                    <button class="btn btn-dark cart-button position-absolute bottom-0 end-0 m-3 rounded-circle">
-                        <i class="bi bi-cart-fill fs-4"></i>
-                    </button>
-                </div>
-            </div>
+      <div class="col-12 col-md-5 px-3" *ngFor="let p of listProducto">
 
-            <div class="col-12 col-md-5 px-3">
-                <div class="card-coffee p-3 text-white text-center position-relative h-100">
-                    <img src="cafe-americano.png" class="coffee-img position-absolute top-0 start-50 translate-middle" alt="Café Americano">
-                    <span class="price-tag fs-5 fw-bold p-1 position-absolute">S/.4</span>
-                    <div class="coffee-details mt-5 pt-3">
-                        <h3 class="fw-bolder text-uppercase mb-1">CAFÉ AMERICANO</h3>
-                        <p class="mb-1">Café espresso</p>
-                        <p class="mb-3">+ agua caliente</p>
-                    </div>
-                    <button class="btn btn-dark cart-button position-absolute bottom-0 end-0 m-3 rounded-circle">
-                        <i class="bi bi-cart-fill fs-4"></i>
-                    </button>
-                </div>
-            </div>
+        <div class="card-coffee p-3 text-white text-center position-relative h-100">
+          
+          <!-- IMAGEN -->
+          <img
+            [src]="getImagen(p.nombre)"
+            class="coffee-img position-absolute top-0 start-50 translate-middle"
+          />
 
-            <div class="col-12 col-md-5 px-3">
-                <div class="card-coffee p-3 text-white text-center position-relative h-100">
-                    <img src="cafe-capuccino.png" class="coffee-img position-absolute top-0 start-50 translate-middle" alt="Capuccino">
-                    <span class="price-tag fs-5 fw-bold p-1 position-absolute">S/.4</span>
-                    <div class="coffee-details mt-5 pt-3">
-                        <h3 class="fw-bolder text-uppercase mb-1">CAPUCCINO</h3>
-                        <p class="mb-1">Café espresso</p>
-                        <p class="mb-1">+ leche vaporizada</p>
-                        <p class="mb-3">+ espuma de leche</p>
-                    </div>
-                    <button class="btn btn-dark cart-button position-absolute bottom-0 end-0 m-3 rounded-circle">
-                        <i class="bi bi-cart-fill fs-4"></i>
-                    </button>
-                </div>
-            </div>
+          <!-- PRECIO -->
+          <span class="price-tag fs-5 fw-bold p-1 position-absolute">
+            S/. {{ p.precio_base }}
+          </span>
 
-            <div class="col-12 col-md-5 px-3">
-                <div class="card-coffee p-3 text-white text-center position-relative h-100">
-                    <img src="mocacino.png" class="coffee-img position-absolute top-0 start-50 translate-middle" alt="Mocaccino">
-                    <span class="price-tag fs-5 fw-bold p-1 position-absolute">S/.8</span>
-                    <div class="coffee-details mt-5 pt-3">
-                        <h3 class="fw-bolder text-uppercase mb-1">MOCACCINO</h3>
-                        <p class="mb-1">+ agua caliente</p>
-                        <p class="mb-1">+ Café espresso</p>
-                        <p class="mb-1">+ leche vaporizada</p>
-                        <p class="mb-1">+ chocolate</p>
-                        <p class="mb-1">+ crema opcional</p>
-                    </div>
-                    <button class="btn btn-dark cart-button position-absolute bottom-0 end-0 m-3 rounded-circle">
-                        <i class="bi bi-cart-fill fs-4"></i>
-                    </button>
-                </div>
-            </div>
+          <!-- DETALLES -->
+          <div class="coffee-details mt-5 pt-3">
+            <h3 class="fw-bolder text-uppercase mb-1">
+              {{ p.descripcion }}
+            </h3>
 
-            <div class="col-12 col-md-5 px-3">
-                <div class="card-coffee p-3 text-white text-center position-relative h-100">
-                    <img src="cafe-afogato.png" class="coffee-img position-absolute top-0 start-50 translate-middle" alt="Afogato">
-                    <span class="price-tag fs-5 fw-bold p-1 position-absolute">S/.4</span>
-                    <div class="coffee-details mt-5 pt-3">
-                        <h3 class="fw-bolder text-uppercase mb-1">AFOGATO</h3>
-                        <p class="mb-1">+ Café espresso caliente</p>
-                        <p class="mb-3">+ bola de helado</p>
-                    </div>
-                    <button class="btn btn-dark cart-button position-absolute bottom-0 end-0 m-3 rounded-circle">
-                        <i class="bi bi-cart-fill fs-4"></i>
-                    </button>
-                </div>
-            </div>
+          </div>
 
-            <div class="col-12 col-md-5 px-3">
-                <div class="card-coffee p-3 text-white text-center position-relative h-100">
-                    <img src="cafe-expresso.png" class="coffee-img position-absolute top-0 start-50 translate-middle" alt="Café Expresso">
-                    <span class="price-tag fs-5 fw-bold p-1 position-absolute">S/.4</span>
-                    <div class="coffee-details mt-5 pt-3">
-                        <h3 class="fw-bolder text-uppercase mb-1">CAFÉ EXPRESSO</h3>
-                        <p class="mb-1">Café molido muy fino</p>
-                        <p class="mb-3">+ agua a presión</p>
-                    </div>
-                    <button class="btn btn-dark cart-button position-absolute bottom-0 end-0 m-3 rounded-circle">
-                        <i class="bi bi-cart-fill fs-4"></i>
-                    </button>
-                </div>
-            </div>
+          <!-- BOTÓN -->
+          <button
+            class="btn btn-dark cart-button position-absolute bottom-0 end-0 m-3 rounded-circle"
+            (click)="agregarAlCarrito(p)"
+          >
+            <i class="bi bi-cart-fill fs-4"></i>
+          </button>
 
         </div>
+      </div>
+
     </div>
+  </div>
 </div>
