@@ -1,0 +1,48 @@
+
+<body>
+    <!-- Botón de regreso -->
+    <a href="#" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        volver al menú
+    </a>
+
+    <div class="container-fluid">
+        <!-- Header -->
+        <div class="page-header">
+            <h1 class="page-title">nuestros cafés</h1>
+            <div class="divider"></div>
+            <p class="page-subtitle">selecciona tu favorito</p>
+        </div>
+
+        <!-- Grid de productos -->
+        <div class="products-grid" >
+            <!-- Producto 1 -->
+            <div class="product-card"  *ngFor="let p of listProducto">
+                <span class="badge-popular">popular</span>
+                <img [src]="getImagen(p.idProducto)"alt="Café Latte" class="product-image">
+                <div class="product-content">
+                    <div class="product-category">clásico</div>
+                    <h3 class="product-name">{{ p.nombre }}</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <span class="rating-count">(125)</span>
+                    </div>
+                    <p class="product-description">{{ p.descripcion }}</p>
+                    <div class="product-footer">
+                        <span class="product-price">S/. {{ p.precioBase }}</span>
+                        <button class="add-to-cart-btn" (click)="agregar(p)">
+                            <i class="fas fa-shopping-bag"></i>
+                            agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
