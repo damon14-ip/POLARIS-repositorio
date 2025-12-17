@@ -1,0 +1,14 @@
+<div class="container mt-4">
+  <h3>🛒 Pedido</h3>
+
+  <div *ngFor="let p of carrito.obtener()">
+    {{ p.nombre }} - {{ p.cantidad }} x S/.{{ p.precioBase }}
+  </div>
+
+  <hr>
+  <h4>Total: S/. {{ carrito.total() }}</h4>
+
+  <button class="btn btn-success mt-2">
+    Confirmar pedido
+  </button>
+</div>
