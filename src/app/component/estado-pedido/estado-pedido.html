@@ -1,0 +1,7 @@
+<div class="estado-box">
+  <h2>📦 Estado de tu pedido</h2>
+
+  <p *ngIf="estado === 'EN_ESPERA'">🕒 En espera</p>
+  <p *ngIf="estado === 'EN_PREPARACION'">👨‍🍳 En preparación</p>
+  <p *ngIf="estado === 'LISTO_PARA_RECOGER'">✅ Listo para recoger</p>
+</div>

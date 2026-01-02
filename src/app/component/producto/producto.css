@@ -415,3 +415,14 @@ body::after {
 .product-card:nth-child(9) {
   animation-delay: 0.5s;
 }
+
+.extras-box {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.extra-item {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+

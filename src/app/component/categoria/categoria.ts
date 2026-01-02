@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
   styleUrl: './categoria.css',
 })
 export class Categoria {
-  listCategory: any[] = [];
+  listCategoria: any[] = [];
 
   constructor(
-    private changeDetectorRef: ChangeDetectorRef,
+    /*private changeDetectorRef: ChangeDetectorRef,*/
     private router:Router,
     private categoryService: CategoriaService
   ) {}
@@ -21,9 +21,10 @@ export class Categoria {
   ngOnInit(): void {
     this.categoryService.getAll().subscribe({
       next: (response: any) => {
-        this.listCategory = response;
-        this.changeDetectorRef.markForCheck();
-        this.changeDetectorRef.detectChanges();
+        this.listCategoria = response;
+        /*this.changeDetectorRef.markForCheck();
+        this.changeDetectorRef.detectChanges();*/
+        console.log(response)
       },
       error: (error: any) => {
         console.log(error);
@@ -44,7 +45,7 @@ export class Categoria {
     return icons[nombre] || 'fa-circle';
   }
 
-  seeProduct(idCategoria:number){
+  seeProduct(idCategoria:string){
     this.router.navigate(['/producto',idCategoria])
   }
 }
