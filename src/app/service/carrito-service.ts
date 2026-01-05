@@ -4,35 +4,53 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class CarritoService {
-  private carrito: any[] = [];
+  private items: any[] = [];
 
   agregar(producto: any) {
-    const existe = this.carrito.find(
-      p => p.idProducto === producto.idProducto
+
+    const index = this.items.findIndex(
+      p =>
+        p.idProducto === producto.idProducto &&
+        JSON.stringify(p.salsas) === JSON.stringify(producto.salsas) &&
+        JSON.stringify(p.toppings) === JSON.stringify(producto.toppings)
     );
 
-    if (existe) {
-      existe.cantidad++;
+    if (index >= 0) {
+      this.items[index].cantidad++;
     } else {
-      this.carrito.push({
+      this.items.push({
         ...producto,
         cantidad: 1
       });
     }
   }
 
-  obtener() {
-    return this.carrito;
+  obtenerItems() {
+    return this.items;
   }
 
-  total(): number {
-    return this.carrito.reduce(
-      (s, p) => s + p.precioBase * p.cantidad, 0
-    );
+  aumentar(index: number) {
+    this.items[index].cantidad++;
+  }
+
+  disminuir(index: number) {
+    if (this.items[index].cantidad > 1) {
+      this.items[index].cantidad--;
+    }
+  }
+
+  eliminar(index: number) {
+    this.items.splice(index, 1);
   }
 
   limpiar() {
-    this.carrito = [];
+    this.items = [];
   }
 
+  total() {
+    return this.items.reduce(
+      (sum, item) => sum + item.precioBase * item.cantidad,
+      0
+    );
+  }
 }

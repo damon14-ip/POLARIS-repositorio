@@ -20,7 +20,7 @@
     </div>
 
     <div class="row g-4 justify-content-center">
-      <div class="col-lg-2 col-md-4 col-sm-6" *ngFor="let c of listCategory" (click)="seeProduct(c.id_categoria)">
+      <div class="col-lg-2 col-md-4 col-sm-6" *ngFor="let c of listCategoria" (click)="seeProduct(c.idCategoria)">
         <div class="category-card">
           <i class="fas category-icon" [ngClass]="getIcon(c.nombre)"></i>
           <div class="category-name">{{c.nombre}}</div>

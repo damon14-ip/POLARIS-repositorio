@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 export class CategoriaService {
   constructor(
         private httpClient: HttpClient
-    ) {}
-    public getAll(): Observable<any> {
-        return this.httpClient.get('http://localhost:8080/categoria/getall');
-    }
+  ) {}
+  public getAll(): Observable<any> {
+    return this.httpClient.get('http://localhost:8080/categoria/getall');
+  }
 
 }
