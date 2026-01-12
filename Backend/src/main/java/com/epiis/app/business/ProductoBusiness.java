@@ -4,10 +4,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.UUID;
 import org.springframework.stereotype.Service;
-
 import com.epiis.app.dataaccess.ProductoRepository;
 import com.epiis.app.dataaccess.CategoriaRepository;
 import com.epiis.app.dto.DtoProducto;
@@ -17,32 +15,42 @@ import com.epiis.app.entity.Categoria;
 @Service
 public class ProductoBusiness {
 
-    @Autowired
-    private ProductoRepository productoRepository;
+    private final ProductoRepository productoRepository;
+    private final CategoriaRepository categoriaRepository;
 
-    @Autowired
-    private CategoriaRepository categoriaRepository;
-
-    public boolean insert(DtoProducto dtoProducto) {
-        Producto producto = new Producto();
-
-        Categoria categoria = categoriaRepository.findById(dtoProducto.getIdCategoria())
-                .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
-        producto.setCategoria(categoria);
-
-        producto.setNombre(dtoProducto.getNombre());
-        producto.setDisponible(dtoProducto.getDisponible());
-        producto.setPrecioBase(dtoProducto.getPrecioBase());
-        producto.setDescripcion(dtoProducto.getDescripcion());
-        producto.setCreatedAt(new Timestamp(new Date().getTime()));
-        producto.setUpdatedAt(new Timestamp(new Date().getTime()));
-
-        productoRepository.save(producto);
-        return true;
+    public ProductoBusiness(ProductoRepository productoRepository,
+                            CategoriaRepository categoriaRepository) {
+        this.productoRepository = productoRepository;
+        this.categoriaRepository = categoriaRepository;
     }
 
-    public List<DtoProducto> getAll() {
-        List<Producto> productos = productoRepository.findAll();
+    public DtoProducto insert(DtoProducto dto) {
+
+        Categoria categoria = categoriaRepository.findById(dto.getIdCategoria())
+                .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
+
+        Producto producto = new Producto();
+        producto.setIdProducto(UUID.randomUUID().toString());
+        producto.setCategoria(categoria);
+        producto.setNombre(dto.getNombre());
+        producto.setDisponible(dto.getDisponible());
+        producto.setPrecioBase(dto.getPrecioBase());
+        producto.setDescripcion(dto.getDescripcion());
+        producto.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+        producto.setUpdatedAt(producto.getCreatedAt());
+
+        productoRepository.save(producto);
+
+        dto.setIdProducto(producto.getIdProducto());
+        return dto;
+    }
+
+    // 🔥 ESTE ES EL MÉTODO QUE TU FRONT NECESITA
+    public List<DtoProducto> getByCategoria(String idCategoria) {
+
+        List<Producto> productos =
+                productoRepository.findByCategoria_IdCategoria(idCategoria);
+
         List<DtoProducto> dtos = new ArrayList<>();
 
         for (Producto p : productos) {
@@ -53,11 +61,12 @@ public class ProductoBusiness {
             dto.setDisponible(p.getDisponible());
             dto.setPrecioBase(p.getPrecioBase());
             dto.setDescripcion(p.getDescripcion());
-            dto.setCreatedAt(p.getCreatedAt());
-            dto.setUpdatedAt(p.getUpdatedAt());
+            dto.setCreatedAt(new Date(p.getCreatedAt().getTime()));
+            dto.setUpdatedAt(new Date(p.getUpdatedAt().getTime()));
             dtos.add(dto);
         }
 
         return dtos;
     }
 }
+

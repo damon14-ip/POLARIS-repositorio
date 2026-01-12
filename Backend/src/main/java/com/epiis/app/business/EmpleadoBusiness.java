@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,12 @@ public class EmpleadoBusiness {
     @Autowired
     private EmpleadoRepository empleadoRepository;
 
-    public boolean insert(DtoEmpleado dtoEmpleado) {
+    public boolean insert(DtoEmpleado dto) {
+
         Empleado empleado = new Empleado();
-        empleado.setNombre(dtoEmpleado.getNombre());
-        empleado.setPasswordHash(dtoEmpleado.getPasswordHash());
+        empleado.setIdEmpleado(UUID.randomUUID().toString());
+        empleado.setNombre(dto.getNombre());
+        empleado.setPassword(dto.getPassword());
         empleado.setCreatedAt(new Timestamp(new Date().getTime()));
         empleado.setUpdatedAt(new Timestamp(new Date().getTime()));
 
@@ -30,6 +33,7 @@ public class EmpleadoBusiness {
     }
 
     public List<DtoEmpleado> getAll() {
+
         List<Empleado> empleados = empleadoRepository.findAll();
         List<DtoEmpleado> dtos = new ArrayList<>();
 
@@ -37,9 +41,9 @@ public class EmpleadoBusiness {
             DtoEmpleado dto = new DtoEmpleado();
             dto.setIdEmpleado(e.getIdEmpleado());
             dto.setNombre(e.getNombre());
-            dto.setPasswordHash(e.getPasswordHash());
-            dto.setCreatedAt(e.getCreatedAt());
-            dto.setUpdatedAt(e.getUpdatedAt());
+            dto.setPassword(e.getPassword());
+            dto.setCreatedAt(new Date(e.getCreatedAt().getTime()));
+            dto.setUpdatedAt(new Date(e.getUpdatedAt().getTime()));
             dtos.add(dto);
         }
 

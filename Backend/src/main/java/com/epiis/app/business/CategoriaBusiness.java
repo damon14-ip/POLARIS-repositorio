@@ -1,46 +1,58 @@
 package com.epiis.app.business;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.epiis.app.dataaccess.CategoriaRepository;
 import com.epiis.app.dto.DtoCategoria;
 import com.epiis.app.entity.Categoria;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class CategoriaBusiness {
 
-    @Autowired
-    private CategoriaRepository categoriaRepository;
+    private final CategoriaRepository categoriaRepository;
 
-    public boolean insert(DtoCategoria dtoCategoria) {
-        Categoria categoria = new Categoria();
-        categoria.setNombre(dtoCategoria.getNombre());
-        categoria.setCreatedAt(new Timestamp(new Date().getTime()));
-        categoria.setUpdatedAt(new Timestamp(new Date().getTime()));
+    public CategoriaBusiness(CategoriaRepository categoriaRepository) {
+        this.categoriaRepository = categoriaRepository;
+    }
 
-        categoriaRepository.save(categoria);
-        return true;
+    @Transactional
+    public DtoCategoria insert(DtoCategoria dto) {
+
+        if (dto == null || dto.getNombre() == null || dto.getNombre().trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre de la categoría es obligatorio");
+        }
+
+        Categoria entity = new Categoria();
+        entity.setIdCategoria(UUID.randomUUID().toString());
+        entity.setNombre(dto.getNombre());
+        entity.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+        entity.setUpdatedAt(entity.getCreatedAt());
+
+        categoriaRepository.save(entity);
+
+        dto.setIdCategoria(entity.getIdCategoria());
+        dto.setCreatedAt(new Date(entity.getCreatedAt().getTime()));
+        dto.setUpdatedAt(new Date(entity.getUpdatedAt().getTime()));
+
+        return dto;
     }
 
     public List<DtoCategoria> getAll() {
-        List<Categoria> categorias = categoriaRepository.findAll();
-        List<DtoCategoria> dtos = new ArrayList<>();
 
-        for (Categoria c : categorias) {
+        return categoriaRepository.findAll().stream().map(c -> {
             DtoCategoria dto = new DtoCategoria();
             dto.setIdCategoria(c.getIdCategoria());
             dto.setNombre(c.getNombre());
-            dto.setCreatedAt(c.getCreatedAt());
-            dto.setUpdatedAt(c.getUpdatedAt());
-            dtos.add(dto);
-        }
-
-        return dtos;
+            dto.setCreatedAt(new Date(c.getCreatedAt().getTime()));
+            dto.setUpdatedAt(new Date(c.getUpdatedAt().getTime()));
+            return dto;
+        }).toList();
     }
 }

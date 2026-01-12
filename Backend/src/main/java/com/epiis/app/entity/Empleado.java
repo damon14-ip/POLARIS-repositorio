@@ -1,23 +1,24 @@
 package com.epiis.app.entity;
 
 import com.epiis.app.generic.EntityGeneric;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 @Entity
 @Table(name = "empleado")
 @Getter
 @Setter
 public class Empleado extends EntityGeneric {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEmpleado")
-    private Integer idEmpleado;
 
-    @Column(name = "nombre", nullable = false)
+    @Id
+    @Column(name = "idEmpleado")
+    private String idEmpleado;
+
+    @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "passwordHash", nullable = false)
-    private String passwordHash;
+    @Column(name = "password")
+    private String password;
 }
+

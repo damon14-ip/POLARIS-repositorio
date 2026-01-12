@@ -7,11 +7,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RequestAcompanamientoInsert {
-    @Getter
-    @Setter
-    public static class Dto {
-        private DtoAcompanamiento acompanamiento;
-    }
-
-    private Dto dto = new Dto();
+    private DtoAcompanamiento dto;
 }

@@ -7,11 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RequestPedidoItemInsert {
-    @Getter
-    @Setter
-    public static class Dto {
-        private DtoPedidoItem pedidoItem;
-    }
 
-    private Dto dto = new Dto();
+    private DtoPedidoItem pedidoItem;
 }

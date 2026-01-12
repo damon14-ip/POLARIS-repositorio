@@ -7,11 +7,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RequestCategoriaInsert {
-    @Getter
-    @Setter
-    public static class Dto {
-        private DtoCategoria categoria;
-    }
-
-    private Dto dto = new Dto();
+    private DtoCategoria dto;
 }

@@ -12,15 +12,14 @@ import lombok.Setter;
 public class ProductoAcompanamiento extends EntityGeneric {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idProdAcomp")
-    private Integer idProdAcomp;
+    private String idProdAcomp;
 
     @ManyToOne
-    @JoinColumn(name = "idProducto", nullable = false)
+    @JoinColumn(name = "idProducto")
     private Producto producto;
 
     @ManyToOne
-    @JoinColumn(name = "idAcompanamiento", nullable = false)
+    @JoinColumn(name = "idAcompanamiento")
     private Acompanamiento acompanamiento;
 }

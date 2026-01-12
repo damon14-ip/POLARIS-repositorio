@@ -11,25 +11,47 @@ import com.epiis.app.business.ProductoAcompanamientoBusiness;
 import com.epiis.app.controller.reqresp.RequestProductoAcompanamientoInsert;
 import com.epiis.app.controller.reqresp.ResponseProductoAcompanamientoInsert;
 import com.epiis.app.dto.DtoProductoAcompanamiento;
+import com.epiis.app.dto.DtoAcompanamiento;
 
 @RestController
-@RequestMapping(path = "productoAcompanamiento")
+@RequestMapping(path = "producto-acompanamiento")
 public class ProductoAcompanamientoController {
 
     @Autowired
-    private ProductoAcompanamientoBusiness paBusiness;
+    private ProductoAcompanamientoBusiness productoAcompanamientoBusiness;
 
+    // 🔹 Insertar acompañamiento a un producto
     @PostMapping(path = "insert", consumes = "application/json")
-    public ResponseEntity<ResponseProductoAcompanamientoInsert> insert(@RequestBody RequestProductoAcompanamientoInsert request) {
-        ResponseProductoAcompanamientoInsert response = new ResponseProductoAcompanamientoInsert();
-        paBusiness.insert(request.getDto().getProductoAcompanamiento());
+    public ResponseEntity<ResponseProductoAcompanamientoInsert> insert(
+            @RequestBody RequestProductoAcompanamientoInsert request) {
+
+        ResponseProductoAcompanamientoInsert response =
+                new ResponseProductoAcompanamientoInsert();
+
+        productoAcompanamientoBusiness.insert(
+                request.getProductoAcompanamiento()
+        );
+
         response.success();
-        response.getListMessage().add("Producto-Acompañamiento registrado correctamente");
+        response.getListMessage()
+                .add("Acompañamiento asignado al producto correctamente");
+
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    // 🔹 Obtener todos los registros
     @GetMapping(path = "getall")
     public ResponseEntity<List<DtoProductoAcompanamiento>> getAll() {
-        return new ResponseEntity<>(paBusiness.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(
+                productoAcompanamientoBusiness.getAll(),
+                HttpStatus.OK
+        );
+    }
+
+    // 🔹 Obtener acompañamientos de un producto específico (con nombre y tipo)
+    @GetMapping(path = "getbyproducto/{idProducto}")
+    public ResponseEntity<List<DtoAcompanamiento>> getByProducto(@PathVariable String idProducto) {
+        List<DtoAcompanamiento> list = productoAcompanamientoBusiness.getByProductoFull(idProducto);
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 }

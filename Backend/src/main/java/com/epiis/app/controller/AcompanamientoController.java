@@ -11,25 +11,50 @@ import com.epiis.app.business.AcompanamientoBusiness;
 import com.epiis.app.controller.reqresp.RequestAcompanamientoInsert;
 import com.epiis.app.controller.reqresp.ResponseAcompanamientoInsert;
 import com.epiis.app.dto.DtoAcompanamiento;
+import com.epiis.app.entity.Acompanamiento;
 
 @RestController
-@RequestMapping(path = "acompanamiento")
+@RequestMapping("acompanamiento")
 public class AcompanamientoController {
 
     @Autowired
     private AcompanamientoBusiness acompanamientoBusiness;
 
     @PostMapping(path = "insert", consumes = "application/json")
-    public ResponseEntity<ResponseAcompanamientoInsert> insert(@RequestBody RequestAcompanamientoInsert request) {
+    public ResponseEntity<ResponseAcompanamientoInsert> insert(
+            @RequestBody RequestAcompanamientoInsert request) {
+
+        DtoAcompanamiento creado =
+                acompanamientoBusiness.insert(request.getDto());
+
         ResponseAcompanamientoInsert response = new ResponseAcompanamientoInsert();
-        acompanamientoBusiness.insert(request.getDto().getAcompanamiento());
         response.success();
+        response.setAcompanamiento(creado);
         response.getListMessage().add("Acompañamiento registrado correctamente");
-        return new ResponseEntity<>(response, HttpStatus.OK);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping(path = "getall")
     public ResponseEntity<List<DtoAcompanamiento>> getAll() {
-        return new ResponseEntity<>(acompanamientoBusiness.getAll(), HttpStatus.OK);
+        return ResponseEntity.ok(acompanamientoBusiness.getAll());
     }
+    @GetMapping(path = "topping")
+    public ResponseEntity<List<DtoAcompanamiento>> getTopping() {
+        return ResponseEntity.ok(
+            acompanamientoBusiness.getByTipo(
+                Acompanamiento.TipoAcompanamiento.TOPPING
+            )
+        );
+    }
+
+    @GetMapping(path = "salsas")
+    public ResponseEntity<List<DtoAcompanamiento>> getSalsas() {
+        return ResponseEntity.ok(
+            acompanamientoBusiness.getByTipo(
+                Acompanamiento.TipoAcompanamiento.SALSA
+            )
+        );
+    }
+
 }

@@ -12,10 +12,9 @@ import lombok.Setter;
 public class Categoria extends EntityGeneric {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idCategoria")
-    private Integer idCategoria;
+    private String idCategoria;
 
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "nombre")
     private String nombre;
 }

@@ -1,5 +1,7 @@
 package com.epiis.app.entity;
 
+import java.math.BigDecimal;
+
 import com.epiis.app.generic.EntityGeneric;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -12,21 +14,20 @@ import lombok.Setter;
 public class PedidoItem extends EntityGeneric {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idItem")
-    private Integer idItem;
+    private String idItem;
 
     @ManyToOne
-    @JoinColumn(name = "idProducto", nullable = false)
+    @JoinColumn(name = "idProducto")
     private Producto producto;
 
     @ManyToOne
-    @JoinColumn(name = "idPedido", nullable = false)
+    @JoinColumn(name = "idPedido")
     private Pedido pedido;
 
-    @Column(name = "cantidad", nullable = false)
-    private Integer cantidad;
+    @Column(name = "cantidad")
+    private int cantidad;
 
-    @Column(name = "precioUnitarioFinal", nullable = false)
-    private Double precioUnitarioFinal;
+    @Column(name = "precioUnitarioFinal")
+    private BigDecimal precioUnitarioFinal;
 }

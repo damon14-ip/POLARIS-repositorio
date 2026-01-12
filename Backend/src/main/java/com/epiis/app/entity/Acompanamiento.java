@@ -12,10 +12,18 @@ import lombok.Setter;
 public class Acompanamiento extends EntityGeneric {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idAcompanamiento")
-    private Integer idAcompanamiento;
+    private String idAcompanamiento;
 
-    @Column(name = "nombre", nullable = false)
-    private String nombre;
+    @Column(name = "nombreAcompanamiento")
+    private String nombreAcompanamiento;
+ 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipoAcompanamiento")
+    private TipoAcompanamiento tipoAcompanamiento;
+    
+    public enum TipoAcompanamiento {
+    	SALSA,
+    	TOPPING,
+    }
 }

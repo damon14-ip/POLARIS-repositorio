@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DtoProducto extends DtoGeneric {
-    private Integer idProducto;
-    private Integer idCategoria; 
+    private String idProducto;
+    private String idCategoria; 
     private Boolean disponible;
     private String nombre;
     private Double precioBase;

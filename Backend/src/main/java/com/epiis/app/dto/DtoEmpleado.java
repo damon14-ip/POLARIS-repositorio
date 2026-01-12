@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DtoEmpleado extends DtoGeneric {
-    private Integer idEmpleado;
+    private String idEmpleado;
     private String nombre;
-    private String passwordHash;
+    private String password;
 }

@@ -4,14 +4,16 @@ import com.epiis.app.dto.DtoPedido;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
 public class RequestPedidoInsert {
-    @Getter
-    @Setter
-    public static class Dto {
-        private DtoPedido pedido;
+
+    private DtoPedido dto;
+
+    public DtoPedido getDto() {
+        return dto;
     }
 
-    private Dto dto = new Dto();
+    public void setDto(DtoPedido dto) {
+        this.dto = dto;
+    }
 }
+

@@ -5,38 +5,54 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
-@Entity
-@Table(name = "pedido")
 @Getter
 @Setter
+@Entity
+@Table(name = "pedido")
 public class Pedido extends EntityGeneric {
 
     @Id
-    @Column(name = "idPedido", length = 36)
-    private String idPedido; // UUID
+    @Column(name = "idPedido")
+    private String idPedido;
 
     @ManyToOne
-    @JoinColumn(name = "idEmpleado", nullable = false)
+    @JoinColumn(name = "idEmpleado")
     private Empleado empleado;
-
-    @Column(name = "fechaHoraCreacion", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaHoraCreacion;
-
-    @Column(name = "nombreCliente", nullable = false)
+    
+    @Column(name = "nombreCliente")
     private String nombreCliente;
 
-    @Column(name = "estado", nullable = false)
-    private String estado;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipoPedido")
+    private TipoPedido tipoPedido;
 
-    @Column(name = "totalPagar", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "metodoPago")
+    private MetodoPago metodoPago;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado")
+    private EstadoPedido estado;
+
+    @Column(name = "mesa")
+    private Integer mesa;
+
+    @Column(name = "totalPagar")
     private Double totalPagar;
 
-    @Column(name = "tipoPedido", nullable = false)
-    private Boolean tipoPedido;
+    public enum TipoPedido {
+        MESA,
+        LLEVAR
+    }
 
-    @Column(name = "metodoPago", nullable = false)
-    private Boolean metodoPago;
+    public enum MetodoPago {
+        EFECTIVO,
+        YAPE
+    }
+
+    public enum EstadoPedido {
+        ESPERA,
+        PREPARACION,
+        LISTO
+    }
 }
