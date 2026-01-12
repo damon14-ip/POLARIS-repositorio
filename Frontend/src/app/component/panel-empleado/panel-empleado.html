@@ -1,0 +1,197 @@
+<div class="pedido-container">
+  <div class="titulo-container">
+    <div class="titulo-icono">
+      <i class="bi bi-cup-hot-fill"></i>
+    </div>
+    <div class="titulo-texto">
+      <h1>Pedidos Activos</h1>
+      <p class="titulo-sub">Polarís Café & Waffles</p>
+    </div>
+    <div class="contador-pedidos">
+      <span class="contador-numero">{{ pedidos.length }}</span>
+      <span class="contador-texto">PEDIDOS</span>
+    </div>
+  </div>
+
+  <div *ngIf="cargando" class="estado-carga">
+    <div class="spinner-polaris"></div>
+    <p>Buscando pedidos activos...</p>
+  </div>
+
+  <div *ngIf="!cargando && pedidos.length === 0" class="sin-pedidos">
+    <div class="sin-pedidos-icono">
+      <i class="bi bi-emoji-smile"></i>
+    </div>
+    <h3>¡Todo al día!</h3>
+    <p>No hay pedidos pendientes</p>
+    <small>Los nuevos pedidos aparecerán aquí automáticamente</small>
+  </div>
+
+  <div class="pedidos-grid-mejorado">
+    <div class="pedido-tarjeta" 
+         *ngFor="let p of pedidos; let idx = index"
+         [ngClass]="{'pedido-listo-tachado': p.estado === 'LISTO'}">
+      
+      <div class="tachado-overlay" *ngIf="p.estado === 'LISTO'">
+        <div class="tachado-linea"></div>
+        <div class="tachado-texto">
+          <i class="bi bi-check2-circle"></i>
+          LISTO PARA ENTREGAR
+        </div>
+      </div>
+
+      <div class="pedido-cabecera">
+        <div class="pedido-numero-estado">
+          <span class="estado-pedido" [ngClass]="'estado-' + p.estado?.toLowerCase()">
+            {{ p.estado }}
+          </span>
+        </div>
+        
+        <div class="pedido-cliente-hora">
+          <div class="cliente-info">
+            <i class="bi bi-person-circle"></i>
+            <span>{{ p.nombreCliente || 'Cliente' }}</span>
+          </div>
+          <div class="hora-info">
+            <i class="bi bi-clock"></i>
+            {{ p.createdAt | date:'HH:mm' }}
+          </div>
+        </div>
+      </div>
+
+      <div class="pedido-info-principal">
+        <div class="info-item destacado">
+          <div class="info-icono">
+            <i class="bi bi-currency-dollar"></i>
+          </div>
+          <div class="info-contenido">
+            <span class="info-label">TOTAL</span>
+            <span class="info-valor">S/. {{ p.totalPagar }}</span>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icono">
+            <i class="bi bi-wallet2"></i>
+          </div>
+          <div class="info-contenido">
+            <span class="info-label">PAGO</span>
+            <span class="info-valor">{{ p.metodoPago }}</span>
+          </div>
+        </div>
+        
+        <div class="info-item" *ngIf="p.mesa">
+          <div class="info-icono">
+            <i class="bi bi-table"></i>
+          </div>
+          <div class="info-contenido">
+            <span class="info-label">MESA</span>
+            <span class="info-valor">{{ p.mesa }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pedido-acciones">
+        <button class="btn-detalle" (click)="verDetalle(p)">
+          <i class="bi bi-eye"></i>
+          Ver Detalle
+        </button>
+        
+        <div class="acciones-rapidas">
+          <button class="btn-accion-rapida btn-preparar"
+                  (click)="cambiarEstado(p, 'PREPARACION')"
+                  [disabled]="p.estado === 'PREPARACION' || p.estado === 'LISTO'">
+            <i class="bi bi-play-circle"></i>
+          </button>
+          
+          <button class="btn-accion-rapida btn-finalizar"
+                  (click)="cambiarEstado(p, 'LISTO')"
+                  [disabled]="p.estado === 'LISTO'">
+            <i class="bi bi-check2-circle"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-detalle" *ngIf="pedidoSeleccionado" [ngClass]="{'modal-visible': modalVisible}">
+    <div class="modal-contenido">
+      <div class="modal-header">
+        <h3>
+          <i class="bi bi-receipt"></i>
+          Detalle del Pedido
+        </h3>
+        <button class="btn-cerrar" (click)="cerrarModal()">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="detalle-cliente">
+          <div class="detalle-item">
+            <i class="bi bi-person"></i>
+            <span>{{ pedidoSeleccionado.nombreCliente }}</span>
+          </div>
+          <div class="detalle-item">
+            <i class="bi bi-clock-history"></i>
+            <span>{{ pedidoSeleccionado.createdAt | date:'HH:mm' }}</span>
+          </div>
+          <div class="detalle-item">
+            <i class="bi bi-credit-card"></i>
+            <span>{{ pedidoSeleccionado.metodoPago }}</span>
+          </div>
+          <div class="detalle-item" *ngIf="pedidoSeleccionado.mesa">
+            <i class="bi bi-geo-alt"></i>
+            <span>Mesa {{ pedidoSeleccionado.mesa }}</span>
+          </div>
+        </div>
+        
+        <div class="detalle-items">
+          <h4><i class="bi bi-list-check"></i> Productos</h4>
+          <div class="items-lista">
+            <div class="item-detalle" *ngFor="let item of pedidoSeleccionado.items">
+      
+              <div class="item-info">
+                <div class="item-nombre">{{ item.nombreProducto }}</div>
+                <div class="item-cantidad">x{{ item.cantidad }}</div>
+              </div>
+              <div class="item-precio">S/. {{ item.precioUnitarioFinal * item.cantidad | number:'1.2-2' }}</div>
+            </div>
+          </div>
+          
+          <div class="detalle-total">
+            <span>TOTAL A PAGAR</span>
+            <span class="total-monto">S/. {{ pedidoSeleccionado.totalPagar }}</span>
+          </div>
+        </div>
+        
+        <div class="detalle-estado">
+          <h4><i class="bi bi-arrow-repeat"></i> Cambiar Estado</h4>
+          <div class="estado-opciones">
+            <button class="btn-estado-modal btn-espera"
+                    (click)="cambiarEstado(pedidoSeleccionado, 'ESPERA')"
+                    [ngClass]="{'activo': pedidoSeleccionado.estado === 'ESPERA'}">
+              <i class="bi bi-pause-circle"></i>
+              Espera
+            </button>
+            
+            <button class="btn-estado-modal btn-preparando"
+                    (click)="cambiarEstado(pedidoSeleccionado, 'PREPARACION')"
+                    [ngClass]="{'activo': pedidoSeleccionado.estado === 'PREPARACION'}">
+              <i class="bi bi-play-circle"></i>
+              Preparando
+            </button>
+            
+            <button class="btn-estado-modal btn-listomodal"
+                    (click)="cambiarEstado(pedidoSeleccionado, 'LISTO')"
+                    [ngClass]="{'activo': pedidoSeleccionado.estado === 'LISTO'}">
+              <i class="bi bi-check2-circle"></i>
+              Listo
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-overlay" (click)="cerrarModal()"></div>
+  </div>
+</div>
