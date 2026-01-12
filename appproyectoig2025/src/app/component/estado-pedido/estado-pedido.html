@@ -1,0 +1,59 @@
+<div class="estado-box polaris-estado">
+  <div class="polaris-header">
+    <i class="bi bi-cup-hot-fill polaris-icon"></i>
+    <h2 class="polaris-title">Estado de tu pedido Polarís</h2>
+  </div>
+
+  <div class="estado-content">
+    <div class="estado-item" *ngIf="estado === 'ESPERA'">
+      <div class="estado-icon espera">
+        <i class="bi bi-clock"></i>
+      </div>
+      <div class="estado-info">
+        <h3 class="estado-text">En espera</h3>
+        <p class="estado-desc">Tu pedido está en cola de espera</p>
+      </div>
+      <div class="estado-time">
+        <span class="time-badge">Próximo</span>
+      </div>
+    </div>
+
+    <div class="estado-item" *ngIf="estado === 'PREPARACION'">
+      <div class="estado-icon preparacion">
+        <i class="bi bi-egg-fried"></i>
+      </div>
+      <div class="estado-info">
+        <h3 class="estado-text">En preparación</h3>
+        <p class="estado-desc">Nuestros baristas están trabajando en tu pedido</p>
+      </div>
+      <div class="estado-progress">
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <span class="progress-text">Preparando...</span>
+      </div>
+    </div>
+
+    <div class="estado-item" *ngIf="estado === 'LISTO'">
+      <div class="estado-icon listo">
+        <i class="bi bi-check-circle"></i>
+      </div>
+      <div class="estado-info">
+        <h3 class="estado-text">¡Pedido listo!</h3>
+        <p class="estado-desc">Puedes pasar a recogerlo en mostrador</p>
+      </div>
+      <div class="estado-action">
+        <button class="btn-recoger">
+          <i class="bi bi-cup-straw"></i> Recoger pedido
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="polaris-footer">
+    <p class="footer-text">
+      <i class="bi bi-info-circle"></i>
+      Gracias por elegir Café Polarís
+    </p>
+  </div>
+</div>

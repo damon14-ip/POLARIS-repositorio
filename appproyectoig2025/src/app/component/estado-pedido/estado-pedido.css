@@ -1,0 +1,260 @@
+.polaris-estado {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+  border-radius: 20px;
+  padding: 30px;
+  padding-top: 50px;
+  box-shadow: 0 10px 30px rgba(87, 184, 255, 0.15);
+  border: 1px solid rgba(87, 184, 255, 0.2);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.polaris-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(87, 184, 255, 0.1);
+}
+
+.polaris-icon {
+  font-size: 3rem;
+  color: #57b8ff;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.polaris-title {
+  color: #1a365d;
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin: 0;
+  background: linear-gradient(90deg, #57b8ff, #2d8bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.estado-content {
+  margin: 25px 0;
+}
+
+.estado-item {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 5px 15px rgba(87, 184, 255, 0.1);
+  border: 1px solid rgba(87, 184, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+.estado-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(87, 184, 255, 0.2);
+}
+
+.estado-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.estado-icon.espera {
+  background: linear-gradient(135deg, #a3d4ff, #57b8ff);
+  color: white;
+}
+
+.estado-icon.preparacion {
+  background: linear-gradient(135deg, #ffcc80, #ff9800);
+  color: white;
+  animation: pulse 2s infinite;
+}
+
+.estado-icon.listo {
+  background: linear-gradient(135deg, #80ffa0, #00c853);
+  color: white;
+  animation: bounce 1s infinite alternate;
+}
+
+.estado-info {
+  flex-grow: 1;
+}
+
+.estado-text {
+  color: #1a365d;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+}
+
+.estado-desc {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.estado-time {
+  margin-left: 15px;
+}
+
+.time-badge {
+  background: linear-gradient(135deg, #57b8ff, #2d8bff);
+  color: white;
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.estado-progress {
+  margin-left: 15px;
+  text-align: center;
+  min-width: 120px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(87, 184, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(90deg, #ffcc80, #ff9800);
+  border-radius: 10px;
+  animation: loading 2s ease-in-out infinite alternate;
+}
+
+.progress-text {
+  color: #ff9800;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.estado-action {
+  margin-left: 15px;
+}
+
+.btn-recoger {
+  background: linear-gradient(135deg, #00c853, #00a844);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 200, 83, 0.3);
+}
+
+.btn-recoger:hover {
+  background: linear-gradient(135deg, #00a844, #008c38);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 200, 83, 0.4);
+}
+
+.btn-recoger i {
+  font-size: 1.1rem;
+}
+
+.polaris-footer {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(87, 184, 255, 0.1);
+  text-align: center;
+}
+
+.footer-text {
+  color: #6b7280;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.footer-text i {
+  color: #57b8ff;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 152, 0, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(255, 152, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 152, 0, 0);
+  }
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes loading {
+  0% {
+    width: 30%;
+  }
+  50% {
+    width: 70%;
+  }
+  100% {
+    width: 30%;
+  }
+}
+
+@media (max-width: 576px) {
+  .polaris-estado {
+    padding: 20px;
+    margin: 15px;
+  }
+  
+  .estado-item {
+    flex-direction: column;
+    text-align: center;
+    padding: 25px 15px;
+  }
+  
+  .estado-icon {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+  
+  .estado-time,
+  .estado-progress,
+  .estado-action {
+    margin-left: 0;
+    margin-top: 15px;
+  }
+  
+  .polaris-title {
+    font-size: 1.5rem;
+  }
+}

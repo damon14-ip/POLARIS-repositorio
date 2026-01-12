@@ -1,0 +1,58 @@
+<body>
+    <!-- Formas decorativas flotantes -->
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+
+    <!-- Estrellas decorativas -->
+    <div class="star star-1">✨</div>
+    <div class="star star-2">💫</div>
+    <div class="star star-3">⭐</div>
+    <div class="star star-4">✨</div>
+
+    <!-- Contenedor de Login -->
+    <div class="login-container">
+        <!-- Logo y Título -->
+        <div class="logo-container">
+            <div class="logo">
+                <i class="fas fa-sparkles"></i>
+            </div>
+            <h1 class="logo-title">FinanceGlow</h1>
+            <p class="logo-subtitle">Tu dinero, tu poder ✨</p>
+        </div>
+
+        <!-- Formulario de Login -->
+        <form [formGroup]="formUser">
+            <!-- Nombre -->
+            <div class="mb-4">
+                <label class="form-label">Nombre 💌</label>
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input
+                        type="text"
+                        class="form-control"
+                        formControlName="nombre">
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+                <label class="form-label">Contraseña 🔒</label>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input
+                        type="password"
+                        class="form-control"
+                        formControlName="password">
+                </div>
+            </div>
+
+            <button
+                type="button"
+                class="btn-login"
+                (click)="login()">
+                Iniciar Sesión ✨
+            </button>
+        </form>
+    </div>
+</body>
